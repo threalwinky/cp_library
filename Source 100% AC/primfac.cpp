@@ -1,44 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool prime(unsigned int n){
-    if ( n < 2){
-        return false;
+#define NMAX 100001
+typedef unsigned long long ll;
+ll n, a[100000], c=0, cnt = 0;
+vector<pair<ll,int>> v;
+void inp(){
+	cin>>n;
+}
+void pt(ll n){
+    while(n>1){
+	for(ll i=2;i<=n;i++){
+        while(n%i==0){
+            n=n/i;
+            a[c]=i;
+            c++;
+        	}
+    	}
     }
-        for (unsigned int i = 2; i <= sqrt(n); i++){
-            if ( n % i == 0){
-                return false;
-            }
-        }
-    return true;
+    for (int i = 0; i<c; i++){
+    	int biendem = 1;
+    	while (a[i]==a[i+1]){
+    		i++;
+    		biendem++;
+    	}
+    	v.push_back({a[i], biendem});
+    	cnt++;
+    }
+}
+void out(){
+	cout<<cnt<<endl;
+	int biendem = 0;
+	for (auto x:v){
+		if (biendem == 0){
+			cout<<x.first<<' '<<x.second;
+			biendem++;
+			}
+			else{
+			cout<<'\n'<<x.first<<' '<<x.second;
+			}
+	}
 }
 int main(){
-	int n,s = 0,temp = 0;
-	cin>>n;int m = n,z = n;
-	for (int i = 2 ;i<m; i++){
-		s = 0;
-		if (prime(i) == 1){
-			if (n%i == 0){
-			while (n%i == 0){
-				n/=i;
-				s+=1;
-			}
-			temp++;
-			}
-			
-		}
-	};
-	cout<<temp<<endl;
-	for (int i = 2 ;i<m; i++){
-		s = 0;
-		if (prime(i) == 1){
-			if (z%i == 0){
-			while (z%i == 0){
-				z/=i;
-				s+=1;
-			}
-			cout<<i<<" "<<s<<endl;
-			}
-			temp++;
-		}
-	}
+	inp();
+    pt(n);
+    out();
 }
