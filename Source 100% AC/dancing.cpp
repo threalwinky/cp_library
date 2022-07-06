@@ -8,22 +8,20 @@ void FASTINPUT(){
 }
 typedef long long ll;
 typedef unsigned long long ull;
-int n, a[NMAX];
+ll n, fred[NMAX], fblue[NMAX];
 void inp(){
 	cin>>n;
-	for (int i = 0; i < n ; i++){
-		int x; cin>>x; a[x]++;
-	}
 }
 void out(){
-	sort(a+1, a+n+1, greater<int>());
-	
-	int total = 0, i = 1;
-	for (int i = 0; i <= NMAX ; i++){
-		if ((a[i] == 1)) 
-		total += a[i];
+	fblue[3] = 1;
+	fred[3] = 8;
+	int temp = 3;
+	for (int i = 4; i<=n; i++){
+		fblue[i] = fblue[i-1]+temp;
+		fred[i] = fred[i-1] +4;
+		temp+=2;
 	}
-	cout<<total;
+	cout<<fred[n]<<" "<<fblue[n];
 }
 int main(){
     FASTINPUT();

@@ -8,22 +8,24 @@ void inp(){
 		cin>>a[i];
 	}
 }
-bool tk(int sct){
+int tk(int sct){
 	int l = 0, r = n-1;
 	while (r>=l){
 		int m = (l+r)/2;
-		if (a[m] == sct) return true;
+		if (a[m] == sct) {
+			while (a[m]==a[m-1]) m-=1;
+			return m+1;
+		}
 		else if (a[m]>sct) r=m-1;
 		else l = m+1;
 	}
-	return false;
+	return 0;
 }
 void out(){
-	int x;ad
+	int x;
 	for (int i = 0; i < m ; i++){
 		cin>>x;
-		if (tk(x)) cout<<1;
-		else cout<<0;
+		cout<<tk(x)<<" ";
 	}
 }
 int main(){

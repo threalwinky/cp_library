@@ -20,7 +20,7 @@ void out(){
 	
 	int total = 0, i = 1;
 	for (int i = 0; i <= NMAX ; i++){
-		if ((a[i] == 1)) 
+		if ((a[i] > 1)) 
 		total += a[i];
 	}
 	cout<<total;

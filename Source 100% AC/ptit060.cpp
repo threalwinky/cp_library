@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define NMAX 1000001
+#define NMAX 10001
 void FASTINPUT(){
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -8,22 +8,22 @@ void FASTINPUT(){
 }
 typedef long long ll;
 typedef unsigned long long ull;
-int n, a[NMAX];
+queue<int> q;
+int n, k;
 void inp(){
-	cin>>n;
-	for (int i = 0; i < n ; i++){
-		int x; cin>>x; a[x]++;
-	}
+	cin>>n>>k;
+	for (int i = 0; i<n; i++){int x; cin>>x; q.push(x);}
 }
 void out(){
-	sort(a+1, a+n+1, greater<int>());
-	
-	int total = 0, i = 1;
-	for (int i = 0; i <= NMAX ; i++){
-		if ((a[i] == 1)) 
-		total += a[i];
+	for (int i = 0; i<k%n; i++){
+		int x = q.front();
+		q.pop();
+		q.push(x);
 	}
-	cout<<total;
+	while (!q.empty()){
+		cout<<q.front()<<" ";
+		q.pop();
+	}
 }
 int main(){
     FASTINPUT();
