@@ -1,4 +1,3 @@
-snippet CPP
 #include                    <bits/stdc++.h>
 using namespace             std;
 //#pragma comment(linker, "/stack:200000000")
@@ -27,5 +26,3 @@ const double PI =           3.14159265358979;
 /*----- ----- ----- ----- ----- ----- ----- ----- ----- -----*/
 
 int main(){$1}
-
-endsnippet
