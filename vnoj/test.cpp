@@ -1,191 +1,195 @@
-//code by iwttry
-
-/*INCLUDES*/
-#include <algorithm>
-#include <bitset>
-#include <cmath>
-#include <cstring>
-#include <deque>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <limits>
-#include <limits.h>
-#include <list>
-#include <map>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <stdio.h>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
-
-/*USING LIBRABRIES*/
-
+#include<bits/stdc++.h>
 using namespace std;
+struct BigInt{
+    vector<char> a;//turn string into vector
+    short sign;//number sign 0 with number 0, 1 with positive numbers, -1 with negative numbers
+    int len = 0;
+    BigInt():
+        sign(1){
 
-/*DEFINES*/
-
-#define fastIO ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define MAX 1000001
-#define MOD 1000000007
-#define ll long long
-#define ull unsigned long long
-#define ld long double
-#define endline "\n"
-#define f1(i,n) for (int i=1; i<=n; i++)
-#define f0(i,n) for (int i=0; i<n; i++)
-#define f1d(i,n) for (int i=n; i>=1; i--)
-#define f0d(i,n) for (int i=n; i>=0; i--)
-#define alength(n) sizeof(n)/sizeof(n[0])
-
-/*TEMPLATES*/
-
-template<class T> bool umin(T& a, const T& b) {return b<a?a=b, 1:0;}
-template<class T> bool umax(T& a, const T& b) { return a<b?a=b, 1:0;} 
-
-/*MOST USED FUNCTION*/
-//+++ERATOSTHENES SIEVE+++
-/*bool pn[MAX];
-void eratos(){
-    pn[0] = pn[1] = true;
-    for (int i=2; i*i<MAX; i++) if (!pn[i])
-    for (int j=i*i; j<MAX; j+=i)
-    pn[j]=true;
-}*/
-/*------------------------------------------*/
-//+++BINARY_SEARCH+++
-int BinarySearch(int a[], int left, int right, int x){
-	while (left < right){
-		int mid = left + (right - left)/2;
-		if (a[mid] == x) return mid;
-		if (a[mid] > x) right = mid;
-		else left = mid+1;
-	}
-	if (a[left] == a[right] && a[left] == x)
-		return right;
-	return -1;
-}
-/*------------------------------------------*/
-//+++LOWER_BOUND+++
-int LowerBound(int a[], int left, int right, int x){
-	int mid;
-	while (left <= right){
-		mid = left + (right - left)/2;
-		if (a[mid] == x) return a[mid];
-		if (a[mid] >= x) right = mid - 1;
-		else left = mid+1;
-	}
-	return a[left];
-}
-/*------------------------------------------*/
-//++UPPER_BOUND+++
-int UpperBound(int a[], int left, int right, int x){
-	int mid;
-	while (left <= right){
-		mid = left + (right - left)/2;
-		if (a[mid] > x) right = mid - 1;
-		else left = mid+1;
-	}
-	return a[left];
-}
-/*------------------------------------------*/
-//+++LOWER_DIVE+++
-int LowerDive(int a[], int left, int right, int x){
-	int mid;
-	while (left <= right){
-		mid = left + (right - left)/2;
-		if (a[mid] < x) left = mid+1;
-		else right = mid - 1;
-	}
-	return a[right];
-}
-/*------------------------------------------*/
-//+++UPPER_DIVE+++
-int UpperDive(int a[], int left, int right, int x){
-	int mid;
-	while (left <= right){
-		mid = left + (right - left)/2;
-		if (a[mid] == x) return a[mid];
-		if (a[mid] <= x) left = mid+1;
-		else right = mid - 1;
-	}
-	return a[right];
-}
-/*------------------------------------------*/
-//+++COMBINATION+++
-ll C(int n, int k ){
-    k = min(k, n - k);
-    ll res = 1;
-    for (int i = 1; i <= k;i++){
-        res *= (n-i+1);
-        res/=i;
+        }
+    BigInt(const char s[]){
+        *this = s;
     }
-    return res;
-}
-/*------------------------------------------*/
-//+++FIBONACCINUMBER+++
-ll fibo(int k){
-    if (k == 0 || k == 1) return 1;
-    const int half = k/2;
-    if (k & 1)
-        return fibo(half)*fibo(half+1)+fibo(half-1)*fibo(half);
-    else{
-        return fibo(half)*fibo(half) + fibo(half-1)*fibo(half-1);
+    void operator=(const BigInt &b){
+        sign = b.sign;
+        len = b.len;
+        a = b.a;
     }
-}
-/*-----------------------------------------------*/
-/*-----------------------------------------------*/
-/*-----------------------------------------------*/
-/*-----------------------------------------------*/
-/*CODE*/
-void insertMS(multiset<ll> &s, ll x){
-    s.insert(x);
-}
-void deleteMS(multiset<ll> &s, ll x){
-    s.erase(s.find(x));
-}
-int MedianMS(multiset<ll> s){
-    int MsSize = s.size();
-    ll x = *next(s.begin(), MsSize / 2 - 1);
-    ll y = *next(s.begin(), MsSize / 2);
-    if (MsSize & 1) return y;
-    return min(x, y);
-}
-ll n, k, a[100001], idx = 0;
-multiset<ll> ms;
-void inp(){
-    cin>>n>>k;
-}
-
-void solve(){
-    for (int i = 0; i<k;i++){
-        cin>>a[idx++];
-        insertMS(ms, a[idx - 1]);
+    void operator=(const char b[]){
+        a.clear();
+        bool flag = 0;
+        int cnt = 0;
+        sign = (b[0] == '-') ? -1 : 1;
+        for (int i = ((sign == 1) ? 0 : 1); i<strlen(b); i++){
+            if (b[i] != '0'){
+                flag = 1;
+            }
+            if (flag){
+                a.push_back(b[i]);        
+                cnt++;
+            }
+        }
+        reverse(a.begin(), a.end());
+        if (a.empty()){a.push_back('0');sign = 0;cnt = 1;}
+        len = cnt;
     }
-    cout<<MedianMS(ms)<<" ";
-}
-
-void out(){
-    for (int i = k; i<n;i++){
-		//for (auto x:ms) cout<<x<<" ";
-		//cout<<endl;
-        cin>>a[idx++];
-        insertMS(ms, a[idx - 1]);
-        deleteMS(ms, a[i - k]);
-        cout<<MedianMS(ms)<<" ";
+    void out(){
+        cout<<"Sign : "<<sign<<"\n";
+        cout<<"Length : "<<len<<"\n";
+        cout<<"Value : ";
+        if (sign == -1) cout<<'-';
+        for (int i = len-1; i>=0; i--) cout<<a[i];
+        cout<<"\n";
     }
-}
-
+    BigInt abs() const{
+        BigInt tmp = *this;
+        tmp.sign *= tmp.sign;
+        return tmp;
+    }
+    bool operator==(BigInt b) const{
+        if (sign != b.sign) return 0;
+        if (len != b.len) return 0;
+        for (int i = len - 1; i>=0; i--){
+            if (a[i] != b.a[i]){
+                return 0;
+            }
+        }
+        return 1;
+    }
+    bool operator<(BigInt b) const{
+        if (sign != b.sign) return sign < b.sign;
+        if (len != b.len){
+            if (sign == -1) return len > b.len;
+            return len < b.len;
+        }
+        for (int i = len - 1; i>=0; i--){
+            if (a[i] != b.a[i]){
+                return ((a[i] - '0') < (b.a[i] - '0'));
+            }
+        }
+        return 0;
+    }
+    bool operator<=(BigInt b) const{
+        if (sign != b.sign) return sign < b.sign;
+        if (len != b.len){
+            if (sign == -1) return len > b.len;
+            return len < b.len;
+        }
+        for (int i = len - 1; i>=0; i--){
+            if (a[i] != b.a[i]){
+                return ((a[i] - '0') < (b.a[i] - '0'));
+            }
+        }
+        return 1;
+    }
+    bool operator>(BigInt b) const{
+        if (sign != b.sign) return sign > b.sign;
+        if (len != b.len){
+            if (sign == -1) return len < b.len;
+            return len > b.len;
+        }
+        for (int i = len - 1; i>=0; i--){
+            if (a[i] != b.a[i]){
+                return ((a[i] - '0') > (b.a[i] - '0'));
+            }
+        }
+        return 0;
+    }
+    bool operator>=(BigInt b) const{
+        if (sign != b.sign) return sign > b.sign;
+        if (len != b.len){
+            if (sign == -1) return len < b.len;
+            return len > b.len;
+        }
+        for (int i = len - 1; i>=0; i--){
+            if (a[i] != b.a[i]){
+                return ((a[i] - '0') > (b.a[i] - '0'));
+            }
+        }
+        return 1;
+    }
+    BigInt operator-() const{
+        BigInt tmp = *this;
+        tmp.sign *= -1;
+        return tmp;
+    } 
+    BigInt operator+(BigInt b) const{
+        if (sign == 0) return b;
+        if (b.sign == 0) return *this;
+        BigInt sum;
+        if (sign == b.sign){
+            int alen, blen;
+            alen = len; blen = b.len;
+            int i = 0, j = 0, rmd = 0, k = 0;
+            while (i < alen || j < blen || rmd != 0){
+                int d;
+                if (i == alen && j == blen) d = rmd;
+                else if (i == alen) d = b.a[j] - '0' + rmd;
+                else if (j == blen) d = a[i] - '0' + rmd;
+                else d = a[i] + b.a[j] - 2*'0' + rmd;
+                rmd = 0;
+                if (d > 9){
+                    rmd = 1;
+                    d %= 10;
+                }
+                sum.a.push_back(d+'0');
+                i++; j++; k++;
+            }
+            sum.sign = sign;
+            sum.len = k;
+            return sum;
+        }
+        if (sign == 1) return *this - -(b);
+        return b - -(*this);
+    }
+    
+    BigInt operator-(BigInt b) const{
+        if (*this == b){ BigInt tmp; tmp.a.push_back('0'); tmp.sign = 0; tmp.len = 1; return tmp;}
+        if (sign != b.sign) return *this + -(b);
+        BigInt sub;
+        if (sign == 1){
+            BigInt sbt, st;
+            if (*this < b){
+                sbt = b;
+                st = *this;
+                sub.sign = -1;
+            }
+            else{
+                sbt = *this;
+                st = b;
+            }
+            int i = 0, j = 0, k = 0, rmd = 0;
+            int alen = sbt.len, blen = st.len;
+            while (i < alen || j < blen || rmd == 1){
+                int d;
+                if (j == blen) d = sbt.a[i] - '0' - rmd;
+                else d = sbt.a[i] - st.a[j] - rmd;
+                rmd = 0;
+                if (d < 0){
+                    rmd = 1;
+                    d+=10;
+                }
+                if (i == alen - 1 && d == 0){
+                    k += 0;
+                }
+                else sub.a.push_back(d+'0');
+                i++; j++; k++;
+            }
+            sub.len = k;
+        }
+        else{
+            return -(b) - -(*this); 
+        }
+        return sub;
+    }
+};
 int main(){
-    fastIO;
-	//freopen("test.inp", "r", stdin);
-    inp();
-    solve();
-    out();
-    return 0;
+    BigInt a = "0"; 
+    BigInt b = "3459803";
+    BigInt c = a + b;
+    a.out();
+    b.out();
+    c.out();
 }
+
