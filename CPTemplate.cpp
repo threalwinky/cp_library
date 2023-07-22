@@ -1,29 +1,33 @@
-/**
- *   author: winky
- *   created: 2023-07-16 00:14:01
-**/
+#include				<bits/stdc++.h>
+using 					namespace std;
+#define fi 				first
+#define se 				second
+#define pb(x) 			push_back(x)
+#define endl 			cout<<"\n";
+//#define int 			long long
+typedef 				vector<int> vi;
+typedef					pair<int, int> ii;
+const string F =		"sample";
+const string IF = 		F + ".inp";
+const string OF =		F + ".out";
+const int maxN = 		1e6;
+const int mod  = 		1e9 + 7;
+void opf(bool c){		if (c == 1){	
+freopen(IF.c_str(), 	"r", stdin);
+freopen(OF.c_str(), 	"w", stdout);}}
+// bool mem1;
+// void clockt(){
+// 	bool mem2;
+// 	cerr << "\nMemory Cost: " << abs(&mem1 - &mem2) / 1024. / 1024. << "MB" << "\n";
+// 	cerr << "Time Cost: " << clock() * 1000. / CLOCKS_PER_SEC << "MS" << "\n";
+// }
+/*--------------------------------------------------------------------------------*/
 
-#include                    <bits/stdc++.h>
-using namespace             std;
-//#define int					long long
-#define pb(x)				push_back(x)
-#define fi					first
-#define se					second
-const int MAX =             3e5;
-const int MOD =             1e9 + 7;
-const int inf =             2147483647;
-const double PI =           3.14159265358979;
-string FILEIO =				"sample";
-string FILEINP =            FILEIO + ".inp";
-string FILEOUT =            FILEIO + ".out";
-void opf					(bool choose) {
-if (choose == 1)			freopen(FILEINP.c_str(), "r", stdin);
-if (choose == 1)			freopen(FILEOUT.c_str(), "w", stdout);}
-/*----- ----- ----- ----- ----- ----- ----- ----- ----- -----*/
 
+ 
 signed main(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    opf(0);
-    
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	opf(1);
+	
 }
