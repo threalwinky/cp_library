@@ -7,9 +7,11 @@ using                       namespace std;
 //#define int               long long
 typedef pair<int, int>      ii;
 typedef vector<int>         vi;
+typedef long double         ldb;
 const string F =            "sample";
 const string IF =           F + ".inp";
 const string OF =           F + ".out";
+const ldb PI =              3.14159265358979
 const int maxN =            1e6;
 const int mod  =            1e9 + 7;
 void opf(bool c){           if (c == 1){	
@@ -29,5 +31,5 @@ signed main(){
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 	opf(0);
-	${1}
+	
 }
