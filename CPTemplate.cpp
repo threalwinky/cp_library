@@ -11,7 +11,7 @@ typedef long double         ldb;
 const string F =            "sample";
 const string IF =           F + ".inp";
 const string OF =           F + ".out";
-const ldb PI =              3.14159265358979
+const ldb PI =              3.14159265358979;
 const int maxN =            1e6;
 const int mod  =            1e9 + 7;
 void opf(bool c){           if (c == 1){	
