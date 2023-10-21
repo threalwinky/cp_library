@@ -1,0 +1,48 @@
+#include                    <bits/stdc++.h>
+using                       namespace std;
+//#define int               long long
+#define fi                  first
+#define se                  second
+#define pb(x)               push_back(x)
+#define endl                cout<<"\n";
+typedef pair<int, int>      ii;
+typedef vector<int>         vi;
+typedef long double         ldb;
+const string F =            "sample";
+const string IF =           F + ".inp";
+const string OF =           F + ".out";
+const ldb PI =              3.14159265358979;
+const int maxN =            1e6;
+const int mod  =            1e9 + 7;
+void opf(bool c){           if (c == 1){
+freopen(IF.c_str(),         "r", stdin);
+freopen(OF.c_str(),         "w", stdout);}}
+//------------------------------------------------------------------------------------
+//Code here
+int f[1000005];
+queue<int> q;
+//------------------------------------------------------------------------------------
+signed main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    opf(0);
+    int i, j;
+    cin >> i >> j;
+    int mx = -1000000, mn = 100000;
+    for (int o=i; o<=j; o++){
+        int k = o;
+        int cnt = 1;
+        while (k != 1){
+            if (k & 1){
+                k = k * 3 + 1;
+            }
+            else{
+                k /= 2;
+            }
+            cnt++;
+        }
+        mx = max(mx, cnt);
+        mn = min(mn, cnt);
+    }
+    cout << mx + mn;
+}

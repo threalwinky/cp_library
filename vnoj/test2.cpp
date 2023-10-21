@@ -1,6 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
-int a[10];
+
+int fac(int n){
+
+}
+
 int main(){
-    cout << a[11];
+    int T;
+    cin >> T;
+    while (T--){
+        int n, k, m;
+        cin >> n >> k >> m;
+
+    }
 }
